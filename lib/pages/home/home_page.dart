@@ -1,19 +1,46 @@
+import 'dart:math';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:random_avatar/random_avatar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  CarouselController popularCardController = CarouselController();
+
+  // @override
+  // void initState() {
+  //   popularCardController.startAutoPlay();
+  //   super.initState();
+  // }
+
+  // @override
+  // void dispose() {
+  //   popularCardController.stopAutoPlay();
+  //   super.dispose();
+  // }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          _buildHeadline(context),
-          const SizedBox(height: 3),
-          _buildTrendingCard(context),
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            _buildHeadline(context),
+            const SizedBox(height: 3),
+            _buildTrendingCard(context),
+            const SizedBox(height: 18),
+            _buildPopularCard(context),
+          ],
+        ),
       ),
     );
   }
@@ -158,7 +185,7 @@ class HomePage extends StatelessWidget {
                     color: Colors.white,
                   ),
             ),
-            Divider(),
+            const Divider(),
             Row(
               children: [
                 CircleAvatar(
@@ -199,11 +226,11 @@ class HomePage extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'GET',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.headline6!.copyWith(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
                     ),
@@ -252,16 +279,99 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildContent(BuildContext context) {
-    return Container(
-      color: Colors.black87,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Text(
-          'The festive season is upon us, and pool game darling 8 Ball Pool is celebrating with a special holiday event. Unlock the new seasonal cue, take part in new missions and catch lots of offers, such as cue sets and consumables, some discounted by up to 90 per cent',
-          style: Theme.of(context).textTheme.headline4!.copyWith(
-                color: Colors.white70,
+  Widget _buildPopularCard(BuildContext context) {
+    return Hero(
+      tag: 'popular-card',
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.58,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Colors.black87,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 15, 20, 3),
+              child: Text(
+                'LET\'S PLAY',
+                style: Theme.of(context).textTheme.headline6!.copyWith(
+                      color: Colors.white60,
+                    ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+              child: Text(
+                'Popular games\nin Vietnam',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ),
+            Column(
+              children: [
+                _buildStackImagePerRow(context),
+                const SizedBox(height: 3),
+                _buildStackImagePerRow(context, viewport: 0.28),
+                const SizedBox(height: 3),
+                _buildStackImagePerRow(context),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStackImagePerRow(
+    BuildContext context, {
+    double viewport = 0.26,
+  }) {
+    return Container(
+      child: CarouselSlider(
+        items: [
+          _buildImageContainer(),
+          _buildImageContainer(),
+          _buildImageContainer(),
+          _buildImageContainer(),
+          _buildImageContainer(),
+          _buildImageContainer(),
+        ],
+        options: CarouselOptions(
+          height: 120,
+          viewportFraction: viewport,
+          aspectRatio: 16 / 9,
+          autoPlay: true,
+          autoPlayInterval: const Duration(milliseconds: 3000),
+          autoPlayAnimationDuration: const Duration(milliseconds: 10000),
+          enableInfiniteScroll: true,
+          autoPlayCurve: Curves.linear,
+          padEnds: false,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImageContainer() {
+    return Padding(
+      padding: const EdgeInsets.all(4),
+      child: Container(
+        height: 115,
+        width: 115,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          color: Color((Random().nextDouble() * 0xFFFFFF).toInt())
+              .withOpacity(1.0),
+        ),
+        child: randomAvatar(
+          (DateTime.now().millisecondsSinceEpoch * Random().nextInt(100))
+              .toString(),
+          height: 45,
+          width: 45,
+          trBackground: true,
         ),
       ),
     );

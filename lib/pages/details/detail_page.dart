@@ -105,7 +105,7 @@ class DetailPage extends StatelessWidget {
                     color: Colors.white,
                   ),
             ),
-            Divider(),
+            const Divider(),
             Row(
               children: [
                 CircleAvatar(
@@ -146,11 +146,11 @@ class DetailPage extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'GET',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.headline6!.copyWith(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
                     ),
@@ -227,11 +227,38 @@ class DetailPage extends StatelessWidget {
       color: Colors.black87,
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: Text(
-          'The festive season is upon us, and pool game darling 8 Ball Pool is celebrating with a special holiday event. Unlock the new seasonal cue, take part in new missions and catch lots of offers, such as cue sets and consumables, some discounted by up to 90 per cent',
-          style: Theme.of(context).textTheme.headline4!.copyWith(
-                color: Colors.white70,
+        child: Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: 'The festive season ',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
+              TextSpan(
+                text: 'is upon us, and pool game darling ',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.white70,
+                    ),
+              ),
+              TextSpan(
+                text: '8 Ball Pool ',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.white70,
+                      fontStyle: FontStyle.italic,
+                    ),
+              ),
+              TextSpan(
+                text:
+                    'is celebrating with a special holiday event. Unlock the new seasonal cue, take part in new missions and catch lots of offers, such as cue sets and consumables, some discounted by up to 90 per cent',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.white70,
+                    ),
+              ),
+            ],
+          ),
         ),
       ),
     );
