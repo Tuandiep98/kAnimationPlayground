@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => SettingBloc()..add(ThemeStarted())),
-        BlocProvider(create: (_) => TrendingBloc())
-,      ],
+        BlocProvider(create: (_) => TrendingBloc()),
+      ],
       child: BlocBuilder<SettingBloc, SettingState>(
         builder: (context, state) {
           var _themeData = ThemeData(

@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
             _buildTrendingCard(context),
             const SizedBox(height: 18),
             _buildPopularCard(context),
+            const SizedBox(height: 50),
           ],
         ),
       ),

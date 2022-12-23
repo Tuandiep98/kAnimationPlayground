@@ -70,7 +70,9 @@ class _AnimatedGestureDetectorState extends State<AnimatedGestureDetector>
 
               // Swiping in top direction.
               if (details.delta.dy > 0) {
-                scale = scale - 0.001;
+                setState(() {
+                  scale = scale - 0.001;
+                });
               }
 
               // Swiping over the size.
@@ -79,21 +81,32 @@ class _AnimatedGestureDetectorState extends State<AnimatedGestureDetector>
               }
             }
           : null,
-      onPanEnd: (details) {
-        setState(() {
-          scale = 1.0;
-        });
-      },
+      onPanEnd: widget.onPanUpdateEnabled
+          ? (details) {
+              setState(() {
+                scale = 1.0;
+              });
+            }
+          : null,
       child: AnimatedScale(
         scale: scale,
         duration: const Duration(milliseconds: 120),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              scale < 1 ? 12 : 0,
-            ),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 0.5),
+                blurRadius: 10,
+                spreadRadius: 7,
+                color: Theme.of(context).dialogBackgroundColor,
+              ),
+            ],
           ),
-          child: widget.child,
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(
+                scale < 1 ? (6 + (12 / scale - 12)) : 0,
+              ),
+              child: widget.child),
         ),
       ),
     );

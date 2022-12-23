@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kanimation_playground/elements/blur_container.dart';
 import 'package:kanimation_playground/utils/animated_gesture_detector.dart';
 import 'package:kanimation_playground/utils/animated_opacity_container.dart';
 
@@ -8,18 +9,23 @@ class TrendingDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height + 500,
-      child: AnimatedGestureDetector(
-        onTap: () {},
-        lowerBound: 0.9,
-        onPanUpdateEnabled: true,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildTrendingCard(context),
-              _buildContent(context),
-            ],
+    return BlurContainer(
+      child: Container(
+        height: MediaQuery.of(context).size.height + 500,
+        child: AnimatedGestureDetector(
+          onTap: () {},
+          lowerBound: 0.85,
+          onPanUpdateEnabled: true,
+          child: Container(
+            color: Theme.of(context).primaryColor,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildTrendingCard(context),
+                  _buildContent(context),
+                ],
+              ),
+            ),
           ),
         ),
       ),
