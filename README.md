@@ -1,6 +1,6 @@
 # kanimation_playground
 
-A new Flutter project.
+Appstore clone with UI and Animation
 
 ## Getting Started
 
