@@ -2,9 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kanimation_playground/utils/animated_gesture_detector.dart';
 import 'package:random_avatar/random_avatar.dart';
 
 import '../../modules/trending/blocs/trending_bloc.dart';
+import '../../utils/animated_opacity_container.dart';
 
 class PopularDetailPage extends StatefulWidget {
   const PopularDetailPage({super.key});
@@ -22,68 +24,81 @@ class _PopularDetailPageState extends State<PopularDetailPage> {
   Widget _buildPopularCard(BuildContext context) {
     return Hero(
       tag: 'popular-card',
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-        ),
-        child: IntrinsicHeight(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+      child: AnimatedGestureDetector(
+        lowerBound: 0.9,
+        onPanUpdateEnabled: true,
+        onTap: () {},
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+          ),
+          child: SingleChildScrollView(
+            child: IntrinsicHeight(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 20, 3),
-                        child: Text(
-                          'LET\'S PLAY',
-                          style:
-                              Theme.of(context).textTheme.headline6!.copyWith(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 15, 20, 3),
+                            child: Text(
+                              'LET\'S PLAY',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
                                     color: Colors.grey,
                                   ),
-                        ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+                            child: Text(
+                              'Popular games\nin Vietnam',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
-                        child: Text(
-                          'Popular games\nin Vietnam',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                      ),
+                      const Spacer(),
+                      _buildCloseButton(context),
+                      const SizedBox(width: 20),
                     ],
                   ),
-                  const Spacer(),
-                  _buildCloseButton(context),
-                  const SizedBox(width: 20),
+                  BlocBuilder<TrendingBloc, TrendingState>(
+                    builder: (context, state) {
+                      return Column(
+                        children: [
+                          _buildStackImagePerRow(
+                              state.popularCarouselController, context),
+                          const SizedBox(height: 3),
+                          _buildStackImagePerRow(
+                              state.popularCarouselController, context,
+                              reverse: true),
+                          const SizedBox(height: 3),
+                          _buildStackImagePerRow(
+                              state.popularCarouselController, context),
+                          const SizedBox(height: 20),
+                        ],
+                      );
+                    },
+                  ),
+                  _buildContent(context),
+                  const SizedBox(height: 20),
+                  _buildContent(context),
                 ],
               ),
-              BlocBuilder<TrendingBloc, TrendingState>(
-                builder: (context, state) {
-                  return Column(
-                    children: [
-                      _buildStackImagePerRow(
-                          state.popularCarouselController, context),
-                      const SizedBox(height: 3),
-                      _buildStackImagePerRow(
-                          state.popularCarouselController, context,
-                          reverse: true),
-                      const SizedBox(height: 3),
-                      _buildStackImagePerRow(
-                          state.popularCarouselController, context),
-                      const SizedBox(height: 20),
-                    ],
-                  );
-                },
-              ),
-            ],
+            ),
           ),
         ),
       ),
@@ -165,6 +180,56 @@ class _PopularDetailPageState extends State<PopularDetailPage> {
           Icons.close_rounded,
           color: Theme.of(context).primaryColor,
           size: 25,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context) {
+    return AnimatedOpacityContainer(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: 'The festive season ',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+              ),
+              TextSpan(
+                text: 'is upon us, and pool game darling ',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.7),
+                    ),
+              ),
+              TextSpan(
+                text: '8 Ball Pool ',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.8),
+                      fontStyle: FontStyle.italic,
+                    ),
+              ),
+              TextSpan(
+                text:
+                    'is celebrating with a special holiday event. Unlock the new seasonal cue, take part in new missions and catch lots of offers, such as cue sets and consumables, some discounted by up to 90 per cent',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.8),
+                    ),
+              ),
+            ],
+          ),
         ),
       ),
     );

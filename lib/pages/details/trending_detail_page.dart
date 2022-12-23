@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kanimation_playground/utils/animated_gesture_detector.dart';
+import 'package:kanimation_playground/utils/animated_opacity_container.dart';
 
 class TrendingDetailPage extends StatelessWidget {
   const TrendingDetailPage({super.key});
@@ -8,12 +10,17 @@ class TrendingDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height + 500,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildTrendingCard(context),
-            _buildContent(context),
-          ],
+      child: AnimatedGestureDetector(
+        onTap: () {},
+        lowerBound: 0.9,
+        onPanUpdateEnabled: true,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildTrendingCard(context),
+              _buildContent(context),
+            ],
+          ),
         ),
       ),
     );
@@ -106,7 +113,7 @@ class TrendingDetailPage extends StatelessWidget {
                   ),
             ),
             Divider(
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
               thickness: 0.1,
             ),
             Row(
@@ -240,8 +247,7 @@ class TrendingDetailPage extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    return Container(
-      color: Theme.of(context).backgroundColor,
+    return AnimatedOpacityContainer(
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Text.rich(

@@ -65,5 +65,5 @@ class FadeTransitionPage extends CustomTransitionPage<void> {
                 ),
             child: child);
 
-  static final CurveTween _curveTween = CurveTween(curve: Curves.bounceInOut);
+  static final CurveTween _curveTween = CurveTween(curve: Curves.bounceOut);
 }
