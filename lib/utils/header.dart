@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../elements/blur_container.dart';
-import '../modules/settings/bloc/setting_bloc.dart';
+import '../modules/settings/blocs/setting_bloc.dart';
 
 class Header extends StatefulWidget {
   const Header({Key? key}) : super(key: key);

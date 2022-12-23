@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+class TrendingDetailPage extends StatelessWidget {
+  const TrendingDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +105,10 @@ class DetailPage extends StatelessWidget {
                     color: Colors.white,
                   ),
             ),
-            const Divider(),
+            Divider(
+              color: Theme.of(context).primaryColor,
+              thickness: 0.1,
+            ),
             Row(
               children: [
                 CircleAvatar(
@@ -183,12 +186,20 @@ class DetailPage extends StatelessWidget {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).primaryColor,
             shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 0.5),
+                blurRadius: 3,
+                spreadRadius: 0.2,
+                color: Theme.of(context).dialogBackgroundColor,
+              ),
+            ],
           ),
           child: Icon(
             Icons.close_rounded,
-            color: Colors.grey[500],
+            color: Theme.of(context).colorScheme.secondary,
             size: 25,
           ),
         ),
@@ -206,15 +217,21 @@ class DetailPage extends StatelessWidget {
           height: 30,
           padding: const EdgeInsets.only(left: 8, right: 8),
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 0.5),
+                blurRadius: 3,
+                spreadRadius: 0.2,
+                color: Theme.of(context).dialogBackgroundColor,
+              ),
+            ],
           ),
           child: Center(
             child: Text(
               'HAPPENING NOW',
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: Colors.white,
-                  ),
+              style: Theme.of(context).textTheme.bodyText2!,
             ),
           ),
         ),
@@ -224,7 +241,7 @@ class DetailPage extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return Container(
-      color: Colors.black87,
+      color: Theme.of(context).backgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Text.rich(
@@ -233,20 +250,26 @@ class DetailPage extends StatelessWidget {
               TextSpan(
                 text: 'The festive season ',
                 style: Theme.of(context).textTheme.headline4!.copyWith(
-                      color: Colors.white,
                       fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
               ),
               TextSpan(
                 text: 'is upon us, and pool game darling ',
                 style: Theme.of(context).textTheme.headline4!.copyWith(
-                      color: Colors.white70,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.7),
                     ),
               ),
               TextSpan(
                 text: '8 Ball Pool ',
                 style: Theme.of(context).textTheme.headline4!.copyWith(
-                      color: Colors.white70,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.8),
                       fontStyle: FontStyle.italic,
                     ),
               ),
@@ -254,7 +277,10 @@ class DetailPage extends StatelessWidget {
                 text:
                     'is celebrating with a special holiday event. Unlock the new seasonal cue, take part in new missions and catch lots of offers, such as cue sets and consumables, some discounted by up to 90 per cent',
                 style: Theme.of(context).textTheme.headline4!.copyWith(
-                      color: Colors.white70,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.8),
                     ),
               ),
             ],

@@ -33,7 +33,7 @@ final lightTheme = ThemeData(
   accentColor: Colors.black,
   accentIconTheme: IconThemeData(color: Colors.white),
   dividerColor: Colors.white54,
-  dialogBackgroundColor: Colors.grey[200],
+  dialogBackgroundColor: Colors.grey[300],
   fontFamily: 'SF Pro',
 );
 

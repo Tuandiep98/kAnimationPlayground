@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kanimation_playground/pages/details/detail_page.dart';
+import 'package:kanimation_playground/pages/details/popular_detail_page.dart';
+import 'package:kanimation_playground/pages/details/trending_detail_page.dart';
 
 import '../pages/base_screen.dart';
 import '../pages/home/home_page.dart';
@@ -16,6 +17,7 @@ class Routerconfiguration {
           body: HomePage(),
         ),
         routes: <GoRoute>[
+          // go to trending page
           GoRoute(
             name: 'trending-details',
             path: 'trending-details',
@@ -23,7 +25,19 @@ class Routerconfiguration {
                 FadeTransitionPage(
               key: scaffoldKey,
               child: BaseScreen(
-                body: DetailPage(),
+                body: TrendingDetailPage(),
+              ),
+            ),
+          ),
+          // go to popular page
+          GoRoute(
+            name: 'popular-details',
+            path: 'popular-details',
+            pageBuilder: (BuildContext context, GoRouterState state) =>
+                FadeTransitionPage(
+              key: scaffoldKey,
+              child: BaseScreen(
+                body: PopularDetailPage(),
               ),
             ),
           ),
@@ -51,5 +65,5 @@ class FadeTransitionPage extends CustomTransitionPage<void> {
                 ),
             child: child);
 
-  static final CurveTween _curveTween = CurveTween(curve: Curves.easeIn);
+  static final CurveTween _curveTween = CurveTween(curve: Curves.bounceInOut);
 }
