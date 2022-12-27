@@ -55,6 +55,7 @@ dependencies:
   overlay_container: ^0.0.5+1
   google_fonts: ^3.0.1
   random_avatar: ^0.0.7
+  palette_generator: ^0.3.3+2
   
 dev_dependencies:
   retrofit_generator: 4.0.3

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kanimation_playground/elements/blur_container.dart';
 import 'package:kanimation_playground/utils/animated_gesture_detector.dart';
 import 'package:kanimation_playground/utils/animated_opacity_container.dart';
 
@@ -9,22 +8,20 @@ class TrendingDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlurContainer(
-      child: Container(
-        height: MediaQuery.of(context).size.height + 500,
-        child: AnimatedGestureDetector(
-          onTap: () {},
-          lowerBound: 0.85,
-          onPanUpdateEnabled: true,
-          child: Container(
-            color: Theme.of(context).primaryColor,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  _buildTrendingCard(context),
-                  _buildContent(context),
-                ],
-              ),
+    return Container(
+      height: MediaQuery.of(context).size.height + 500,
+      child: AnimatedGestureDetector(
+        onTap: () {},
+        lowerBound: 0.85,
+        onPanUpdateEnabled: true,
+        child: Container(
+          color: Theme.of(context).primaryColor,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _buildTrendingCard(context),
+                _buildContent(context),
+              ],
             ),
           ),
         ),
@@ -65,8 +62,8 @@ class TrendingDetailPage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
         ),
-        child: Image.network(
-          'https://docs.flutter.dev/cookbook/img-files/effects/parallax/06-mexico-city.jpg',
+        child: Image.asset(
+          'assets/images/freefire-thumb-2.png',
           height: MediaQuery.of(context).size.height * 0.6,
           width: MediaQuery.of(context).size.width - 80,
           fit: BoxFit.cover,
@@ -199,20 +196,20 @@ class TrendingDetailPage extends StatelessWidget {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).colorScheme.secondary,
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
                 offset: Offset(0, 0.5),
                 blurRadius: 3,
                 spreadRadius: 0.2,
-                color: Theme.of(context).dialogBackgroundColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ],
           ),
           child: Icon(
             Icons.close_rounded,
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).primaryColor,
             size: 25,
           ),
         ),
@@ -230,21 +227,23 @@ class TrendingDetailPage extends StatelessWidget {
           height: 30,
           padding: const EdgeInsets.only(left: 8, right: 8),
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
                 offset: Offset(0, 0.5),
                 blurRadius: 3,
                 spreadRadius: 0.2,
-                color: Theme.of(context).dialogBackgroundColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ],
           ),
           child: Center(
             child: Text(
               'HAPPENING NOW',
-              style: Theme.of(context).textTheme.bodyText2!,
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: Theme.of(context).primaryColor,
+                  ),
             ),
           ),
         ),
