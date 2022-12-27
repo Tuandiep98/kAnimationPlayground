@@ -101,7 +101,7 @@ class PopularCard extends StatelessWidget {
         ],
         carouselController: controller,
         options: CarouselOptions(
-          height: 120,
+          height: 100,
           viewportFraction: 0.26,
           aspectRatio: 16 / 9,
           autoPlay: true,

@@ -21,7 +21,7 @@ final darkTheme = ThemeData(
   accentColor: Colors.white,
   accentIconTheme: IconThemeData(color: Colors.black),
   dividerColor: Colors.black12,
-  dialogBackgroundColor: Colors.black54,
+  dialogBackgroundColor: Colors.black38,
   fontFamily: 'SF Pro',
 );
 
@@ -51,7 +51,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
       // theme check
       var theme = await StorageManager.readData('themeMode');
       print('value read from storage: ' + theme.toString());
-      var themeMode = theme ?? 'light';
+      var themeMode = 'light';
       if (themeMode == 'light') {
         print('setting light theme');
         await setLightMode();

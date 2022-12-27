@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../global/router_config.dart';
 import '../utils/web_platform.dart';
 

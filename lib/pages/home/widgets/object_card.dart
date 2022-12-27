@@ -94,7 +94,7 @@ class ObjectCard extends StatelessWidget {
                             ),
                             Text(
                               'Short-Form Video Platform',
-                              style: Theme.of(context).textTheme.headline6!,
+                              style: Theme.of(context).textTheme.bodyText2!,
                             ),
                           ],
                         ),

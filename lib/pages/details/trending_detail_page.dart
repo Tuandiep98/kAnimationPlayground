@@ -133,14 +133,14 @@ class TrendingDetailPage extends StatelessWidget {
                   children: [
                     Text(
                       'Garena Free Fire: Winterlands',
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     Text(
                       '10-minute Survival Shooter!',
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.white,
                           ),
                     ),
@@ -186,7 +186,7 @@ class TrendingDetailPage extends StatelessWidget {
 
   Widget _buildCloseButton(BuildContext context) {
     return Positioned(
-      top: 20,
+      top: 70,
       right: 20,
       child: GestureDetector(
         onTap: () {
@@ -196,20 +196,12 @@ class TrendingDetailPage extends StatelessWidget {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Colors.black,
             shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(0, 0.5),
-                blurRadius: 3,
-                spreadRadius: 0.2,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-            ],
           ),
           child: Icon(
             Icons.close_rounded,
-            color: Theme.of(context).primaryColor,
+            color: Colors.white,
             size: 25,
           ),
         ),
@@ -219,7 +211,7 @@ class TrendingDetailPage extends StatelessWidget {
 
   Widget _buildStatusLabel(BuildContext context) {
     return Positioned(
-      top: 20,
+      top: 70,
       left: 0,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
@@ -227,22 +219,14 @@ class TrendingDetailPage extends StatelessWidget {
           height: 30,
           padding: const EdgeInsets.only(left: 8, right: 8),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Colors.black,
             borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(0, 0.5),
-                blurRadius: 3,
-                spreadRadius: 0.2,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-            ],
           ),
           child: Center(
             child: Text(
               'HAPPENING NOW',
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.white,
                   ),
             ),
           ),

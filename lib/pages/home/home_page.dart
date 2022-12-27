@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+            const SizedBox(height: 50),
             HeadLineTitle(),
             const SizedBox(height: 5),
             TrendingCard(),

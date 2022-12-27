@@ -57,21 +57,21 @@ class _AnimatedGestureDetectorState extends State<AnimatedGestureDetector>
               // Swiping in right direction.
               if (details.delta.dx > 0) {
                 setState(() {
-                  scale = scale - 0.001;
+                  scale = scale - 0.003;
                 });
               }
 
               // Swiping in left direction.
               if (details.delta.dx < 0) {
                 setState(() {
-                  scale = scale - 0.001;
+                  scale = scale - 0.003;
                 });
               }
 
               // Swiping in top direction.
               if (details.delta.dy > 0) {
                 setState(() {
-                  scale = scale - 0.001;
+                  scale = scale - 0.003;
                 });
               }
 

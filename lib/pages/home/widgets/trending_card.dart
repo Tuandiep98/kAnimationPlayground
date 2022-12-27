@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kanimation_playground/elements/blur_container.dart';
 import 'package:kanimation_playground/utils/animated_gesture_detector.dart';
 
 class TrendingCard extends StatelessWidget {
@@ -100,7 +99,7 @@ class TrendingCard extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Colors.transparent,
-              Theme.of(context).colorScheme.secondary.withOpacity(1)
+              Theme.of(context).colorScheme.secondary.withOpacity(0.9)
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -155,7 +154,7 @@ class TrendingCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Garena Free Fire: Winterlands',
+                      'Garena Free Fire\nWinterlands',
                       style: Theme.of(context).textTheme.headline6!.copyWith(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.bold,
@@ -163,7 +162,7 @@ class TrendingCard extends StatelessWidget {
                     ),
                     Text(
                       '10-minute Survival Shooter!',
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             color: Theme.of(context).primaryColor,
                           ),
                     ),
@@ -217,7 +216,7 @@ class TrendingCard extends StatelessWidget {
           height: 30,
           padding: const EdgeInsets.only(left: 8, right: 8),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(12),
             ),
@@ -226,7 +225,7 @@ class TrendingCard extends StatelessWidget {
             child: Text(
               'HAPPENING NOW',
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                     fontWeight: FontWeight.w500,
                   ),
             ),
