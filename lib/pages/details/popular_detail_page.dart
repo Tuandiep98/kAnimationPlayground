@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kanimation_playground/elements/blur_container.dart';
 import 'package:kanimation_playground/utils/animated_gesture_detector.dart';
 import 'package:random_avatar/random_avatar.dart';
 
@@ -25,80 +24,77 @@ class _PopularDetailPageState extends State<PopularDetailPage> {
   Widget _buildPopularCard(BuildContext context) {
     return Hero(
       tag: 'popular-card',
-      child: BlurContainer(
-        child: AnimatedGestureDetector(
-          lowerBound: 0.85,
-          onPanUpdateEnabled: true,
-          onTap: () {},
-          child: Container(
-            color: Theme.of(context).primaryColor,
-            child: SingleChildScrollView(
-              child: IntrinsicHeight(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 15, 20, 3),
-                              child: Text(
-                                'LET\'S PLAY',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline6!
-                                    .copyWith(
-                                      color: Colors.grey,
-                                    ),
-                              ),
+      child: AnimatedGestureDetector(
+        lowerBound: 0.85,
+        onPanUpdateEnabled: true,
+        onTap: () {},
+        child: Container(
+          color: Theme.of(context).primaryColor,
+          child: SingleChildScrollView(
+            child: IntrinsicHeight(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 15, 20, 3),
+                            child: Text(
+                              'LET\'S PLAY',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                    color: Colors.grey,
+                                  ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
-                              child: Text(
-                                'Popular games\nin Vietnam',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+                            child: Text(
+                              'Popular games\nin Vietnam',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
-                          ],
-                        ),
-                        const Spacer(),
-                        _buildCloseButton(context),
-                        const SizedBox(width: 20),
-                      ],
-                    ),
-                    BlocBuilder<TrendingBloc, TrendingState>(
-                      builder: (context, state) {
-                        return Column(
-                          children: [
-                            _buildStackImagePerRow(
-                                state.popularCarouselController, context),
-                            const SizedBox(height: 3),
-                            _buildStackImagePerRow(
-                                state.popularCarouselController, context,
-                                reverse: true),
-                            const SizedBox(height: 3),
-                            _buildStackImagePerRow(
-                                state.popularCarouselController, context),
-                            const SizedBox(height: 20),
-                          ],
-                        );
-                      },
-                    ),
-                    _buildContent(context),
-                    const SizedBox(height: 20),
-                    _buildContent(context),
-                  ],
-                ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      _buildCloseButton(context),
+                      const SizedBox(width: 20),
+                    ],
+                  ),
+                  BlocBuilder<TrendingBloc, TrendingState>(
+                    builder: (context, state) {
+                      return Column(
+                        children: [
+                          _buildStackImagePerRow(
+                              state.popularCarouselController, context),
+                          const SizedBox(height: 3),
+                          _buildStackImagePerRow(
+                              state.popularCarouselController, context,
+                              reverse: true),
+                          const SizedBox(height: 3),
+                          _buildStackImagePerRow(
+                              state.popularCarouselController, context),
+                          const SizedBox(height: 20),
+                        ],
+                      );
+                    },
+                  ),
+                  _buildContent(context),
+                  const SizedBox(height: 20),
+                  _buildContent(context),
+                ],
               ),
             ),
           ),
